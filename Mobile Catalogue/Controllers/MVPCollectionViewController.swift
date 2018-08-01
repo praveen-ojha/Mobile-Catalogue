@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import Foundation
+
 
 private let reuseIdentifier = "mvpCustomCell"
 
-class MVPCollectionViewController: UICollectionViewController {
+class MVPCollectionViewController: UICollectionViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var transitionBtn: UIButton!
+    var isPresenting: Bool = true
+    
+    let transition = BubbleTransition()
+    let interactiveTransition = BubbleInteractiveTransition()
+    
+    var transitionCenter = CGPoint(x: 0, y: 0)
+    var selectedItemBgColor: String = "FFFFFF"
     
     let mvpData = [
             [MVPModel(imageName: "Security", txtLabel: "Security", bgColor: "F2F3F4", fgColor: "373D3F"),MVPModel(imageName: "Information", txtLabel: "Information", bgColor: "0C374D", fgColor: "EFD469")],
@@ -34,6 +45,7 @@ class MVPCollectionViewController: UICollectionViewController {
         //collectionView?.register(MVPCollectionViewCell.self, forCellWithReuseIdentifier: "mvpCustomCell")
         collectionView?.register(UINib(nibName: "MVPCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
 
+        self.navigationController?.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -75,9 +87,54 @@ class MVPCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Item selected,\(indexPath)")
-    }
 
+        guard let selectedCell = collectionView.cellForItem(at: indexPath) else { fatalError() }
+        
+        transitionCenter = selectedCell.center
+        
+        selectedItemBgColor = ((selectedCell as! MVPCollectionViewCell).cellView.backgroundColor?.toHexString())!
+        
+        performSegue(withIdentifier: "goToFeature", sender: self)
+    
+//        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+//        let viewcontroller = storyboard.instantiateViewController(withIdentifier: "FeatureTableViewController")
+//        viewcontroller.transitioningDelegate = self
+//        viewcontroller.modalPresentationStyle = .custom
+//        self.show(viewcontroller, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let controller = segue.destination
+        controller.transitioningDelegate = self
+        controller.modalPresentationStyle = .custom
+        //interactiveTransition.attach(to: controller)
+    }
+    
+    // MARK: UIViewControllerTransitioningDelegate
+    
+//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        isPresenting = true
+//        transition.transitionMode = .present
+//        transition.startingPoint = transitionBtn.center //transitionButton.center
+//        transition.bubbleColor = UIColor.red// transitionButton.backgroundColor!
+//        return transition
+//    }
+//
+//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        isPresenting = false
+//        transition.transitionMode = .dismiss
+//        transition.startingPoint = transitionBtn.center
+//        transition.bubbleColor = UIColor.red// transitionButton.backgroundColor!
+//        return transition
+//    }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = transitionCenter //transitionButton.center
+        transition.bubbleColor = UIColor(hexString: selectedItemBgColor)
+        return transition
+    }
+    
     // MARK: UICollectionViewDelegate
 
     /*

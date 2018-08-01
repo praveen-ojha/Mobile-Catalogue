@@ -12,6 +12,9 @@
 		35A92824210F64A8000519EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35A92823210F64A8000519EC /* Assets.xcassets */; };
 		35A92827210F64A8000519EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A92825210F64A8000519EC /* LaunchScreen.storyboard */; };
 		35AB4014211132570021EE28 /* MVPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB4013211132570021EE28 /* MVPModel.swift */; };
+		35AB401621114C330021EE28 /* FeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB401521114C330021EE28 /* FeatureViewController.swift */; };
+		35BCC6D82111719D00098114 /* TransitionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BCC6D72111719D00098114 /* TransitionMode.swift */; };
+		35BCC6DB211172A900098114 /* BubbleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BCC6DA211172A900098114 /* BubbleTransition.swift */; };
 		35C1D3D72110AB0800F76C32 /* MVPCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1D3D62110AB0800F76C32 /* MVPCollectionViewController.swift */; };
 		35C1D3DA2110AD4F00F76C32 /* MVPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1D3D82110AD4F00F76C32 /* MVPCollectionViewCell.swift */; };
 		35C1D3DB2110AD4F00F76C32 /* MVPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C1D3D92110AD4F00F76C32 /* MVPCollectionViewCell.xib */; };
@@ -25,6 +28,9 @@
 		35A92826210F64A8000519EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35A92828210F64A8000519EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35AB4013211132570021EE28 /* MVPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPModel.swift; sourceTree = "<group>"; };
+		35AB401521114C330021EE28 /* FeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureViewController.swift; sourceTree = "<group>"; };
+		35BCC6D72111719D00098114 /* TransitionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionMode.swift; sourceTree = "<group>"; };
+		35BCC6DA211172A900098114 /* BubbleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTransition.swift; sourceTree = "<group>"; };
 		35C1D3D62110AB0800F76C32 /* MVPCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionViewController.swift; sourceTree = "<group>"; };
 		35C1D3D82110AD4F00F76C32 /* MVPCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionViewCell.swift; sourceTree = "<group>"; };
 		35C1D3D92110AD4F00F76C32 /* MVPCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MVPCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 			children = (
 				35A92820210F64A6000519EC /* Main.storyboard */,
 				35C1D3DC2110AD5700F76C32 /* Custom Cell */,
+				35BCC6D9211171A400098114 /* Bubble Animation */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -83,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				35C1D3D62110AB0800F76C32 /* MVPCollectionViewController.swift */,
+				35AB401521114C330021EE28 /* FeatureViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -102,6 +110,15 @@
 				35AB4013211132570021EE28 /* MVPModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		35BCC6D9211171A400098114 /* Bubble Animation */ = {
+			isa = PBXGroup;
+			children = (
+				35BCC6D72111719D00098114 /* TransitionMode.swift */,
+				35BCC6DA211172A900098114 /* BubbleTransition.swift */,
+			);
+			path = "Bubble Animation";
 			sourceTree = "<group>";
 		};
 		35C1D3DC2110AD5700F76C32 /* Custom Cell */ = {
@@ -187,6 +204,9 @@
 			files = (
 				35C1D3D72110AB0800F76C32 /* MVPCollectionViewController.swift in Sources */,
 				35AB4014211132570021EE28 /* MVPModel.swift in Sources */,
+				35AB401621114C330021EE28 /* FeatureViewController.swift in Sources */,
+				35BCC6D82111719D00098114 /* TransitionMode.swift in Sources */,
+				35BCC6DB211172A900098114 /* BubbleTransition.swift in Sources */,
 				35C1D3DA2110AD4F00F76C32 /* MVPCollectionViewCell.swift in Sources */,
 				35A9281D210F64A6000519EC /* AppDelegate.swift in Sources */,
 			);
