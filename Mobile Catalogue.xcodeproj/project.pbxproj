@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		35A9281D210F64A6000519EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A9281C210F64A6000519EC /* AppDelegate.swift */; };
-		35A9281F210F64A6000519EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A9281E210F64A6000519EC /* ViewController.swift */; };
 		35A92822210F64A6000519EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A92820210F64A6000519EC /* Main.storyboard */; };
 		35A92824210F64A8000519EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35A92823210F64A8000519EC /* Assets.xcassets */; };
 		35A92827210F64A8000519EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A92825210F64A8000519EC /* LaunchScreen.storyboard */; };
+		35AB4014211132570021EE28 /* MVPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AB4013211132570021EE28 /* MVPModel.swift */; };
+		35C1D3D72110AB0800F76C32 /* MVPCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1D3D62110AB0800F76C32 /* MVPCollectionViewController.swift */; };
+		35C1D3DA2110AD4F00F76C32 /* MVPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1D3D82110AD4F00F76C32 /* MVPCollectionViewCell.swift */; };
+		35C1D3DB2110AD4F00F76C32 /* MVPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C1D3D92110AD4F00F76C32 /* MVPCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35A92819210F64A6000519EC /* Mobile Catalogue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile Catalogue.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A9281C210F64A6000519EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		35A9281E210F64A6000519EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		35A92821210F64A6000519EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35A92823210F64A8000519EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35A92826210F64A8000519EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35A92828210F64A8000519EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35AB4013211132570021EE28 /* MVPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPModel.swift; sourceTree = "<group>"; };
+		35C1D3D62110AB0800F76C32 /* MVPCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionViewController.swift; sourceTree = "<group>"; };
+		35C1D3D82110AD4F00F76C32 /* MVPCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPCollectionViewCell.swift; sourceTree = "<group>"; };
+		35C1D3D92110AD4F00F76C32 /* MVPCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MVPCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,57 @@
 		35A9281B210F64A6000519EC /* Mobile Catalogue */ = {
 			isa = PBXGroup;
 			children = (
+				35AB4012211132400021EE28 /* Model */,
 				35A9281C210F64A6000519EC /* AppDelegate.swift */,
-				35A9281E210F64A6000519EC /* ViewController.swift */,
-				35A92820210F64A6000519EC /* Main.storyboard */,
-				35A92823210F64A8000519EC /* Assets.xcassets */,
-				35A92825210F64A8000519EC /* LaunchScreen.storyboard */,
+				35A9282F210F64D9000519EC /* Controllers */,
+				35A9282E210F64C9000519EC /* Views */,
+				35A92830210F64F3000519EC /* Support Files */,
 				35A92828210F64A8000519EC /* Info.plist */,
 			);
 			path = "Mobile Catalogue";
+			sourceTree = "<group>";
+		};
+		35A9282E210F64C9000519EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35A92820210F64A6000519EC /* Main.storyboard */,
+				35C1D3DC2110AD5700F76C32 /* Custom Cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35A9282F210F64D9000519EC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				35C1D3D62110AB0800F76C32 /* MVPCollectionViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		35A92830210F64F3000519EC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				35A92823210F64A8000519EC /* Assets.xcassets */,
+				35A92825210F64A8000519EC /* LaunchScreen.storyboard */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		35AB4012211132400021EE28 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				35AB4013211132570021EE28 /* MVPModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35C1D3DC2110AD5700F76C32 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				35C1D3D82110AD4F00F76C32 /* MVPCollectionViewCell.swift */,
+				35C1D3D92110AD4F00F76C32 /* MVPCollectionViewCell.xib */,
+			);
+			path = "Custom Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35C1D3DB2110AD4F00F76C32 /* MVPCollectionViewCell.xib in Resources */,
 				35A92827210F64A8000519EC /* LaunchScreen.storyboard in Resources */,
 				35A92824210F64A8000519EC /* Assets.xcassets in Resources */,
 				35A92822210F64A6000519EC /* Main.storyboard in Resources */,
@@ -135,7 +185,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35A9281F210F64A6000519EC /* ViewController.swift in Sources */,
+				35C1D3D72110AB0800F76C32 /* MVPCollectionViewController.swift in Sources */,
+				35AB4014211132570021EE28 /* MVPModel.swift in Sources */,
+				35C1D3DA2110AD4F00F76C32 /* MVPCollectionViewCell.swift in Sources */,
 				35A9281D210F64A6000519EC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.praveenojha.Mobile-Catalogue";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -308,7 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.praveenojha.Mobile-Catalogue";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
