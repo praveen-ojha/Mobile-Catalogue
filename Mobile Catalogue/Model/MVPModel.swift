@@ -10,7 +10,7 @@ import UIKit
 
 struct MVPModel {
     let imageName: String
-    let txtLabel: String
+    let title: String
     let bgColor: String
     let fgColor: String
 }

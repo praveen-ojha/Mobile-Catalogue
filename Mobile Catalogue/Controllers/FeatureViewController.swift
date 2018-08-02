@@ -12,6 +12,12 @@ class FeatureTableViewController: UITableViewController {
 
     let featureData = ["Feature1", "Feature2", "Feature3", "Feature4", "Feature5"]
     
+    var selectedMVP: MVPModel? {
+        didSet {
+            print(selectedMVP!)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,8 +26,28 @@ class FeatureTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        self.navigationController?.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationItem.title = selectedMVP?.title
+        
+    }
+    
+    //MARK: - Nav Bar Setup Methods
+    func updateNavBar(withHexCode colorHexCode: String, withTitleHexCode titleColorHexCode: String){
+        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller doesnot exist")}
+        navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(hexString: titleColorHexCode)]
+        let navBarColour = UIColor(hexString: colorHexCode)
+        navBar.barTintColor = navBarColour
+        navBar.tintColor = UIColor(hexString: titleColorHexCode)
+        //navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(hexString: titleColorHexCode)]
     }
 
+
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,6 +72,10 @@ class FeatureTableViewController: UITableViewController {
          //Configure the cell...
         cell.textLabel?.text = featureData[indexPath.row]
 
+        //this is for color
+        cell.textLabel?.textColor = UIColor(hexString: selectedMVP!.fgColor)
+        cell.backgroundColor = UIColor(hexString: selectedMVP!.bgColor)
+        
         return cell
     }
 

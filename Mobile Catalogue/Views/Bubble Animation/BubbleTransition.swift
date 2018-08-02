@@ -176,11 +176,13 @@ extension BubbleTransition: UIViewControllerAnimatedTransitioning {
      Required by UIViewControllerAnimatedTransitioning
      */
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        print("animate Transition")
+        
         let containerView = transitionContext.containerView
         
         let fromViewController = transitionContext.viewController(forKey: .from)
         let toViewController = transitionContext.viewController(forKey: .to)
+        
+        
         
         if transitionMode == .present {
             fromViewController?.beginAppearanceTransition(false, animated: true)
@@ -223,7 +225,7 @@ extension BubbleTransition: UIViewControllerAnimatedTransitioning {
                 fromViewController?.beginAppearanceTransition(false, animated: true)
             }
             toViewController?.beginAppearanceTransition(true, animated: true)
-            
+            toViewController?.view.alpha = 0
             let key: UITransitionContextViewKey = (transitionMode == .pop) ? .to : .from
             let returningControllerView = transitionContext.view(forKey: key)!
             let originalCenter = returningControllerView.center
@@ -236,23 +238,24 @@ extension BubbleTransition: UIViewControllerAnimatedTransitioning {
             bubble.isHidden = false
             
             UIView.animate(withDuration: duration, animations: {
+                fromViewController?.view.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+                fromViewController?.view.center = self.bubble.center
                 self.bubble.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-                returningControllerView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-                returningControllerView.center = self.startingPoint
-                returningControllerView.alpha = 0
+                returningControllerView.alpha = 0.3
                 
                 if self.transitionMode == .pop {
                     containerView.insertSubview(returningControllerView, belowSubview: returningControllerView)
                     containerView.insertSubview(self.bubble, belowSubview: returningControllerView)
                 }
+                
             }, completion: { (completed) in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                
+//
                 if !transitionContext.transitionWasCancelled {
                     returningControllerView.center = originalCenter
-                    returningControllerView.removeFromSuperview()
+                    returningControllerView.alpha = 1
+                    //returningControllerView.removeFromSuperview() <<--This is the culprit spoiled my night
                     self.bubble.removeFromSuperview()
-                    
                     if fromViewController?.modalPresentationStyle == .custom {
                         fromViewController?.endAppearanceTransition()
                     }

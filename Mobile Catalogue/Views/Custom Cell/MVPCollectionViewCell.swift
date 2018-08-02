@@ -25,7 +25,7 @@ class MVPCollectionViewCell: UICollectionViewCell {
         self.cellView.backgroundColor = UIColor(hexString: model.bgColor)
         self.lblMVP.textColor = UIColor(hexString: model.fgColor)
         self.mvpIconImage.image = UIImage(named: model.imageName)
-        self.lblMVP.text = model.txtLabel
+        self.lblMVP.text = model.title
 //        self.cellView.backgroundColor = UIColor.green
     }
 }
