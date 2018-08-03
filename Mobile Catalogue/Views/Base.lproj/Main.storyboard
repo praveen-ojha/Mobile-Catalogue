@@ -19,28 +19,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Osb-bF-7cp">
                             <size key="itemSize" width="175" height="175"/>
-                            <size key="headerReferenceSize" width="20" height="20"/>
-                            <size key="footerReferenceSize" width="20" height="20"/>
-                            <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="10"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="mvpCell" id="5Cm-yF-gTR" customClass="MVPCollectionViewCell" customModule="Mobile_Catalogue" customModuleProvider="target">
-                                <rect key="frame" x="100" y="30" width="175" height="175"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="mvpCell" id="5Cm-yF-gTR" customClass="MVPCollectionViewCell" customModule="Mobile_Catalogue" customModuleProvider="target">
+                                <rect key="frame" x="5" y="10" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
+                                <size key="customSize" width="50" height="50"/>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="mvpHdrCell" id="reF-Fc-Dzl">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="mvpFtrCell" id="lar-1j-Iqp">
-                            <rect key="frame" x="0.0" y="215" width="375" height="20"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="97S-c3-dIG" id="j3z-Wx-DA2"/>
                             <outlet property="delegate" destination="97S-c3-dIG" id="Vfj-oS-dnU"/>
@@ -53,7 +46,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOw-gq-ED9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1201" y="-150"/>
+            <point key="canvasLocation" x="-1202.4000000000001" y="-150.67466266866569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1sX-mX-cf0">

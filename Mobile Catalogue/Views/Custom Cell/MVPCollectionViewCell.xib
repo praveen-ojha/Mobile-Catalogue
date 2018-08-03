@@ -19,13 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQO-qM-piv">
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQO-qM-piv">
                         <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6o-sI-ztI">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B6o-sI-ztI">
                                 <rect key="frame" x="117" y="117" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="dzj-Pb-M7C"/>
+                                    <constraint firstAttribute="height" constant="50" id="mXa-ov-bNu"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="584-gL-M8b">
                                 <rect key="frame" x="5" y="19" width="165" height="47"/>
@@ -36,6 +38,12 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="175" id="3Zk-8t-ilo"/>
+                            <constraint firstAttribute="width" constant="175" id="Bda-n9-ssc"/>
+                            <constraint firstAttribute="bottom" secondItem="B6o-sI-ztI" secondAttribute="bottom" constant="8" id="Q3N-gl-U83"/>
+                            <constraint firstAttribute="trailing" secondItem="B6o-sI-ztI" secondAttribute="trailing" constant="8" id="j50-0h-hk4"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -45,6 +53,10 @@
                     </view>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="cQO-qM-piv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Eky-ym-hgi"/>
+                <constraint firstItem="cQO-qM-piv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="WkV-Wk-6gw"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="175" height="175"/>
             <connections>

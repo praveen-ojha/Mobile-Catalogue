@@ -10,27 +10,75 @@ import UIKit
 
 private let reuseIdentifier = "featureCell"
 
-class FeatureTableViewController: UITableViewController {
+class FeatureTableViewController: AccordionTableViewController {
+    
+    var alreadyExpandedCell: AccordionTableViewCell?
 
-    let featureData = ["Feature1", "Feature2", "Feature3", "Feature4", "Feature5"]
+    let securityData = [
+        FeatureModel(title: "User Id/Password Login", tech: "Native", content: ""),
+        FeatureModel(title: "Biometrics Login", tech: "Native", content: ""),
+        FeatureModel(title: "Card Activation", tech: "Native", content: ""),
+        FeatureModel(title: "Retrieve User Id", tech: "Native", content: ""),
+        FeatureModel(title: "Password Reset", tech: "Native", content: ""),
+        FeatureModel(title: "Enhanced Face Id", tech: "Angular", content: ""),
+        FeatureModel(title: "Enhanced Biometric", tech: "Angular", content: ""),
+        FeatureModel(title: "OTP - SoftToken", tech: "Native", content: ""),
+        FeatureModel(title: "Push Notification", tech: "Angular", content: ""),
+        FeatureModel(title: "User Id/Password Login", tech: "Native", content: "")
+        ]
+    
+    let informationData = [
+        FeatureModel(title: "Accounts Dashboard", tech: "Native", content: ""),
+        FeatureModel(title: "Account Details", tech: "Native", content: ""),
+        FeatureModel(title: "Account Activities", tech: "Native", content: ""),
+        FeatureModel(title: "Credit Card Details", tech: "Angular", content: ""),
+        FeatureModel(title: "Credit Card Transactions", tech: "Angular", content: ""),
+        FeatureModel(title: "Loan On Phone", tech: "Angular", content: ""),
+        FeatureModel(title: "Rewards Summary", tech: "Angular", content: ""),
+        FeatureModel(title: "Loan Account Summary", tech: "Native", content: ""),
+        FeatureModel(title: "Time Deposit Summary", tech: "Angular", content: "")
+    ]
+    
+    let txnData = [
+        FeatureModel(title: "Pay to Cards (Self and Other Bank Owned)", tech: "Native", content: ""),
+        FeatureModel(title: "Bill Payment", tech: "Native", content: ""),
+        FeatureModel(title: "Repay Loans", tech: "Native", content: ""),
+        FeatureModel(title: "Transfer Between Own Accounts", tech: "Native", content: ""),
+        FeatureModel(title: "Domestic Transfers - Citi Accounts", tech: "Native", content: ""),
+        FeatureModel(title: "Domestic Transfers - Outside Citi", tech: "Native", content: ""),
+        FeatureModel(title: "International Transfers", tech: "Native", content: "")
+        ]
+    
+    let svcData = [
+        FeatureModel(title: "Card Activation", tech: "Angular", content: ""),
+        FeatureModel(title: "Notification Enrollment", tech: "Hybrid", content: ""),
+        FeatureModel(title: "XXXXXXXXXXX", tech: "Hybrid", content: "")
+    ]
+    
+    var featureData: [FeatureModel] = [
+        FeatureModel(title: "Pay to Cards (Self and Other Bank Owned)", tech: "Native", content: "")]
     
     var selectedMVP: MVPModel? {
         didSet {
-            print(selectedMVP!)
+            if selectedMVP!.title == "Services" {
+                featureData = svcData
+            } else if selectedMVP!.title == "Transactions" {
+                featureData = txnData
+            } else if selectedMVP!.title == "Information" {
+                featureData = informationData
+            } else {
+                featureData = securityData
+            }
+            //loadItems()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-//        self.navigationController?.delegate = self
         tableView.register(UINib(nibName: "FeatureCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
-        tableView.rowHeight = 150
+        
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,12 +93,6 @@ class FeatureTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return featureData.count
@@ -58,61 +100,34 @@ class FeatureTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "featureCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "featureCell", for: indexPath) as! FeatureCell
 
+        
          //Configure the cell...
+        cell.headerView.backgroundColor = UIColor(hexString: selectedMVP!.bgColor)
+        cell.txtTitle.textColor = UIColor(hexString: selectedMVP!.fgColor)
+        cell.txtTechnology.textColor = UIColor(hexString: selectedMVP!.fgColor)
+        cell.detailView.backgroundColor = UIColor(hexString: selectedMVP!.fgColor)
+        cell.detailText.textColor = UIColor(hexString: selectedMVP!.bgColor)
+        
+        let feature = featureData[indexPath.row]
+        
+        cell.txtTitle.text = feature.title
+        cell.txtTechnology.text = feature.tech
+        cell.detailText.text = "This section will list all details about " + feature.title
+        
 //        cell.textLabel?.text = featureData[indexPath.row]
 //
 //        //this is for color
 //        cell.textLabel?.textColor = UIColor(hexString: selectedMVP!.fgColor)
 //        cell.backgroundColor = UIColor(hexString: selectedMVP!.bgColor)
-        
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return expandedIndexPaths.contains(indexPath) ? 150.0 : 50.0
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
