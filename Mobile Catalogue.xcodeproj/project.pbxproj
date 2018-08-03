@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3521A1892113DF1900ADCE7F /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521A1872113DF1900ADCE7F /* FeatureCell.swift */; };
+		3521A18A2113DF1900ADCE7F /* FeatureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3521A1882113DF1900ADCE7F /* FeatureCell.xib */; };
 		35A9281D210F64A6000519EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A9281C210F64A6000519EC /* AppDelegate.swift */; };
 		35A92822210F64A6000519EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A92820210F64A6000519EC /* Main.storyboard */; };
 		35A92824210F64A8000519EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35A92823210F64A8000519EC /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3521A1872113DF1900ADCE7F /* FeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
+		3521A1882113DF1900ADCE7F /* FeatureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCell.xib; sourceTree = "<group>"; };
 		35A92819210F64A6000519EC /* Mobile Catalogue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile Catalogue.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35A9281C210F64A6000519EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35A92821210F64A6000519EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 			children = (
 				35C1D3D82110AD4F00F76C32 /* MVPCollectionViewCell.swift */,
 				35C1D3D92110AD4F00F76C32 /* MVPCollectionViewCell.xib */,
+				3521A1872113DF1900ADCE7F /* FeatureCell.swift */,
+				3521A1882113DF1900ADCE7F /* FeatureCell.xib */,
 			);
 			path = "Custom Cell";
 			sourceTree = "<group>";
@@ -188,6 +194,7 @@
 				35C1D3DB2110AD4F00F76C32 /* MVPCollectionViewCell.xib in Resources */,
 				35A92827210F64A8000519EC /* LaunchScreen.storyboard in Resources */,
 				35A92824210F64A8000519EC /* Assets.xcassets in Resources */,
+				3521A18A2113DF1900ADCE7F /* FeatureCell.xib in Resources */,
 				35A92822210F64A6000519EC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35C1D3D72110AB0800F76C32 /* MVPCollectionViewController.swift in Sources */,
+				3521A1892113DF1900ADCE7F /* FeatureCell.swift in Sources */,
 				35AB4014211132570021EE28 /* MVPModel.swift in Sources */,
 				35AB401621114C330021EE28 /* FeatureViewController.swift in Sources */,
 				35BCC6DB211172A900098114 /* BubbleTransition.swift in Sources */,

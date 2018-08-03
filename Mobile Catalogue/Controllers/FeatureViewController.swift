@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let reuseIdentifier = "featureCell"
+
 class FeatureTableViewController: UITableViewController {
 
     let featureData = ["Feature1", "Feature2", "Feature3", "Feature4", "Feature5"]
@@ -27,6 +29,8 @@ class FeatureTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 //        self.navigationController?.delegate = self
+        tableView.register(UINib(nibName: "FeatureCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        tableView.rowHeight = 150
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,11 +61,11 @@ class FeatureTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "featureCell", for: indexPath)
 
          //Configure the cell...
-        cell.textLabel?.text = featureData[indexPath.row]
-
-        //this is for color
-        cell.textLabel?.textColor = UIColor(hexString: selectedMVP!.fgColor)
-        cell.backgroundColor = UIColor(hexString: selectedMVP!.bgColor)
+//        cell.textLabel?.text = featureData[indexPath.row]
+//
+//        //this is for color
+//        cell.textLabel?.textColor = UIColor(hexString: selectedMVP!.fgColor)
+//        cell.backgroundColor = UIColor(hexString: selectedMVP!.bgColor)
         
         return cell
     }

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="featureCell" rowHeight="150" id="KGk-i7-Jjw" customClass="FeatureCell" customModule="Mobile_Catalogue" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IM9-K7-mEW" userLabel="headerView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment - Domestic Internal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UP-aA-khv" userLabel="titleLabel">
+                                <rect key="frame" x="8" y="5" width="273" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AccordionIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Qtl-Fj-opG">
+                                <rect key="frame" x="323" y="3" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="B6D-pH-pAR"/>
+                                    <constraint firstAttribute="height" constant="44" id="bMG-f8-NXl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Native / Angular / Hybrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7g-Oq-Gl1">
+                                <rect key="frame" x="8" y="33" width="132" height="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qtl-Fj-opG" firstAttribute="centerY" secondItem="IM9-K7-mEW" secondAttribute="centerY" id="3Qi-nP-x5J"/>
+                            <constraint firstAttribute="height" constant="50" id="5al-Uk-YbJ"/>
+                            <constraint firstItem="3UP-aA-khv" firstAttribute="leading" secondItem="IM9-K7-mEW" secondAttribute="leading" constant="8" id="7WA-qk-Qeu"/>
+                            <constraint firstItem="3UP-aA-khv" firstAttribute="top" secondItem="IM9-K7-mEW" secondAttribute="top" constant="5" id="Bfq-1l-iW3"/>
+                            <constraint firstItem="f7g-Oq-Gl1" firstAttribute="leading" secondItem="IM9-K7-mEW" secondAttribute="leading" constant="8" id="e7J-Ry-uTo"/>
+                            <constraint firstAttribute="bottom" secondItem="f7g-Oq-Gl1" secondAttribute="bottom" constant="3" id="oaa-a5-nNO"/>
+                            <constraint firstAttribute="trailing" secondItem="Qtl-Fj-opG" secondAttribute="trailing" constant="8" id="uI9-Um-XsG"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-9x-qIo" userLabel="bodyView">
+                        <rect key="frame" x="0.0" y="50" width="375" height="100"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feature Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgb-H9-cQo" userLabel="detailLabel">
+                                <rect key="frame" x="8" y="41" width="99" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1453903168" green="0.63518619539999999" blue="0.30402433870000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zgb-H9-cQo" firstAttribute="leading" secondItem="hMJ-9x-qIo" secondAttribute="leading" constant="8" id="557-N5-o3g"/>
+                            <constraint firstAttribute="height" constant="100" id="gvC-Jx-Edn"/>
+                            <constraint firstItem="Zgb-H9-cQo" firstAttribute="centerY" secondItem="hMJ-9x-qIo" secondAttribute="centerY" id="xzb-Jg-SbG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="IM9-K7-mEW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1MG-96-jev"/>
+                    <constraint firstItem="hMJ-9x-qIo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JBi-yf-AIe"/>
+                    <constraint firstAttribute="trailing" secondItem="hMJ-9x-qIo" secondAttribute="trailing" id="Qdm-vI-qir"/>
+                    <constraint firstAttribute="bottom" secondItem="hMJ-9x-qIo" secondAttribute="bottom" id="Qoy-bj-Y6k"/>
+                    <constraint firstItem="IM9-K7-mEW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UJF-V0-2RG"/>
+                    <constraint firstAttribute="trailing" secondItem="IM9-K7-mEW" secondAttribute="trailing" id="jBR-mV-wsL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="arrowAccordion" destination="Qtl-Fj-opG" id="zaf-r3-3DY"/>
+                <outlet property="detailText" destination="Zgb-H9-cQo" id="Uuh-Bs-ku0"/>
+                <outlet property="detailView" destination="hMJ-9x-qIo" id="1R6-nZ-rSS"/>
+                <outlet property="txtTechnology" destination="f7g-Oq-Gl1" id="Jg0-bC-b6P"/>
+                <outlet property="txtTitle" destination="3UP-aA-khv" id="AFh-HY-aMm"/>
+            </connections>
+            <point key="canvasLocation" x="61.5" y="153"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="AccordionIcon" width="22" height="22"/>
+    </resources>
+</document>
