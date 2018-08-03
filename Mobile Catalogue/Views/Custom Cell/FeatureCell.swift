@@ -36,8 +36,8 @@ class FeatureCell: AccordionTableViewCell {
             let alwaysOptions: UIViewAnimationOptions = [.allowUserInteraction,
                                                          .beginFromCurrentState,
                                                          .transitionCrossDissolve]
-            //let expandedOptions: UIViewAnimationOptions = [.transitionFlipFromTop, .curveEaseOut]
-            let expandedOptions: UIViewAnimationOptions = [.showHideTransitionViews]
+            let expandedOptions: UIViewAnimationOptions = [.transitionFlipFromTop, .curveEaseOut]
+            //let expandedOptions: UIViewAnimationOptions = [.showHideTransitionViews]
             let collapsedOptions: UIViewAnimationOptions = [.transitionFlipFromBottom, .curveEaseIn]
             let options = expanded ? alwaysOptions.union(expandedOptions) : alwaysOptions.union(collapsedOptions)
             

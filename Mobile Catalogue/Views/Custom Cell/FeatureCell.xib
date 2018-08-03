@@ -22,8 +22,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IM9-K7-mEW" userLabel="headerView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment - Domestic Internal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UP-aA-khv" userLabel="titleLabel">
-                                <rect key="frame" x="8" y="5" width="244.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment - Domestic Internal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3UP-aA-khv" userLabel="titleLabel">
+                                <rect key="frame" x="8" y="5" width="307" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Native / Angular / Hybrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7g-Oq-Gl1">
-                                <rect key="frame" x="8" y="33" width="132" height="14"/>
+                                <rect key="frame" x="8" y="33" width="307" height="14"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,8 +48,10 @@
                             <constraint firstAttribute="height" constant="50" id="5al-Uk-YbJ"/>
                             <constraint firstItem="3UP-aA-khv" firstAttribute="leading" secondItem="IM9-K7-mEW" secondAttribute="leading" constant="8" id="7WA-qk-Qeu"/>
                             <constraint firstItem="3UP-aA-khv" firstAttribute="top" secondItem="IM9-K7-mEW" secondAttribute="top" constant="5" id="Bfq-1l-iW3"/>
-                            <constraint firstItem="f7g-Oq-Gl1" firstAttribute="leading" secondItem="IM9-K7-mEW" secondAttribute="leading" constant="8" id="e7J-Ry-uTo"/>
-                            <constraint firstAttribute="bottom" secondItem="f7g-Oq-Gl1" secondAttribute="bottom" constant="3" id="oaa-a5-nNO"/>
+                            <constraint firstAttribute="bottom" secondItem="f7g-Oq-Gl1" secondAttribute="bottom" constant="3" id="VmM-SU-RJc"/>
+                            <constraint firstItem="f7g-Oq-Gl1" firstAttribute="leading" secondItem="IM9-K7-mEW" secondAttribute="leading" constant="8" id="WXi-T1-GoC"/>
+                            <constraint firstItem="Qtl-Fj-opG" firstAttribute="leading" secondItem="f7g-Oq-Gl1" secondAttribute="trailing" constant="8" id="lCC-Yt-Rfw"/>
+                            <constraint firstItem="Qtl-Fj-opG" firstAttribute="leading" secondItem="3UP-aA-khv" secondAttribute="trailing" constant="8" id="oZ1-Vw-IuB"/>
                             <constraint firstAttribute="trailing" secondItem="Qtl-Fj-opG" secondAttribute="trailing" constant="8" id="uI9-Um-XsG"/>
                         </constraints>
                     </view>
