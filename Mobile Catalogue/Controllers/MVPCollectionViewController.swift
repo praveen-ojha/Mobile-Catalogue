@@ -48,10 +48,7 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
         super.viewDidAppear(animated)
         updateNavBar(withHexCode: "D4D4D4", withTitleHexCode: "555555")
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("view disappeared bhai")
-    }
+
 //    //MARK: - Nav Bar Setup Methods
     func updateNavBar(withHexCode colorHexCode: String, withTitleHexCode titleColorHexCode: String){
         guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller doesnot exist")}
@@ -123,12 +120,10 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
 //        if !isTransitionedToChild {
         switch operation {
         case .push:
-            print("push")
             transition.transitionMode = .present
             transition.bubbleColor = UIColor(hexString: selectedItemBgColor)
             transition.startingPoint = transitionCenter
         default:
-            print("default")
             transition.transitionMode = .pop
             //transition.bubbleColor = UIColor(hexString: "D4D4D4")
             transition.bubbleColor = UIColor(hexString: selectedItemBgColor)

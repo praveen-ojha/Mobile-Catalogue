@@ -35,19 +35,6 @@ class FeatureTableViewController: UITableViewController {
         
     }
     
-    //MARK: - Nav Bar Setup Methods
-    func updateNavBar(withHexCode colorHexCode: String, withTitleHexCode titleColorHexCode: String){
-        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller doesnot exist")}
-        navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(hexString: titleColorHexCode)]
-        let navBarColour = UIColor(hexString: colorHexCode)
-        navBar.barTintColor = navBarColour
-        navBar.tintColor = UIColor(hexString: titleColorHexCode)
-        //navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor(hexString: titleColorHexCode)]
-    }
-
-
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
