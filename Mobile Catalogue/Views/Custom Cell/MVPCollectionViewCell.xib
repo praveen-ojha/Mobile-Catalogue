@@ -13,24 +13,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mvpCustomCell" id="gTV-IL-0wX" customClass="MVPCollectionViewCell" customModule="Mobile_Catalogue" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQO-qM-piv">
-                        <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B6o-sI-ztI">
-                                <rect key="frame" x="117" y="117" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="dzj-Pb-M7C"/>
-                                    <constraint firstAttribute="height" constant="50" id="mXa-ov-bNu"/>
-                                </constraints>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6o-sI-ztI">
+                                <rect key="frame" x="92" y="93" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="584-gL-M8b">
-                                <rect key="frame" x="5" y="19" width="165" height="47"/>
+                                <rect key="frame" x="5" y="19" width="140" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" red="0.21568627450980393" green="0.23921568627450979" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,12 +35,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="175" id="3Zk-8t-ilo"/>
-                            <constraint firstAttribute="width" constant="175" id="Bda-n9-ssc"/>
-                            <constraint firstAttribute="bottom" secondItem="B6o-sI-ztI" secondAttribute="bottom" constant="8" id="Q3N-gl-U83"/>
-                            <constraint firstAttribute="trailing" secondItem="B6o-sI-ztI" secondAttribute="trailing" constant="8" id="j50-0h-hk4"/>
-                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -54,17 +45,19 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="cQO-qM-piv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Eky-ym-hgi"/>
-                <constraint firstItem="cQO-qM-piv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="WkV-Wk-6gw"/>
+                <constraint firstAttribute="bottom" secondItem="cQO-qM-piv" secondAttribute="bottom" id="D2W-aX-DcX"/>
+                <constraint firstAttribute="trailing" secondItem="cQO-qM-piv" secondAttribute="trailing" id="NUr-fF-oYI"/>
+                <constraint firstItem="cQO-qM-piv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dbq-Og-wjo"/>
+                <constraint firstItem="cQO-qM-piv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uRN-pM-KqY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="175" height="175"/>
+            <size key="customSize" width="150" height="153"/>
             <connections>
                 <outlet property="cellView" destination="cQO-qM-piv" id="4Fh-Jd-Wah"/>
                 <outlet property="lblMVP" destination="584-gL-M8b" id="VDv-Dp-0T0"/>
                 <outlet property="mvpIconImage" destination="B6o-sI-ztI" id="9ri-E2-9zZ"/>
             </connections>
-            <point key="canvasLocation" x="96.5" y="-8.5"/>
+            <point key="canvasLocation" x="-93" y="-603"/>
         </collectionViewCell>
     </objects>
 </document>
