@@ -21,12 +21,18 @@ class MVPCollectionViewCell: UICollectionViewCell {
         
     }
 
-    func configure(with model: MVPModel){
-        self.cellView.backgroundColor = UIColor(hexString: model.bgColor)
-        self.lblMVP.textColor = UIColor(hexString: model.fgColor)
-        self.mvpIconImage.image = UIImage(named: model.imageName)
+//    func configure(with model: MVPModel){
+//        self.cellView.backgroundColor = UIColor(hexString: model.bgColor)
+//        self.lblMVP.textColor = UIColor(hexString: model.fgColor)
+//        self.mvpIconImage.image = UIImage(named: model.imageName)
+//        self.lblMVP.text = model.title
+//    }
+    
+    func configure(with model: MVP){
+        self.cellView.backgroundColor = UIColor(hexString: model.backgroundColor!)
+        self.lblMVP.textColor = UIColor(hexString: model.foregroundColor!)
+        self.mvpIconImage.image = UIImage(named: model.icon!)
         self.lblMVP.text = model.title
-//        self.cellView.backgroundColor = UIColor.green
     }
 }
 

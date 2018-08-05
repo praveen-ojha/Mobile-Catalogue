@@ -8,23 +8,31 @@
 
 import UIKit
 import Foundation
-
+import CoreData
 
 private let reuseIdentifier = "mvpCustomCell"
 
 class MVPCollectionViewController: UICollectionViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     
-    var isTransitionedToChild = false
+    //Core data context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    //var isTransitionedToChild = false
     
     let transition = BubbleTransition()
     
     var transitionCenter = CGPoint(x: 0, y: 0)
     var selectedItemBgColor: String = "FFFFFF"
     
-    let mvpData = [
-            [MVPModel(imageName: "Security", title: "Security", bgColor: "F2F3F4", fgColor: "373D3F"),MVPModel(imageName: "Information", title: "Information", bgColor: "0C374D", fgColor: "EFD469")],
-            [MVPModel(imageName: "Transactions", title: "Transactions", bgColor: "C02F1D", fgColor: "FFFFFF"),MVPModel(imageName: "Services", title: "Services", bgColor: "B5C689", fgColor: "FFFFFF")]
-    ]
+    //HardCoded Data
+//    let mvpData = [
+//            [MVPModel(imageName: "Security", title: "Security", bgColor: "F2F3F4", fgColor: "373D3F"),MVPModel(imageName: "Information", title: "Information", bgColor: "0C374D", fgColor: "EFD469")],
+//            [MVPModel(imageName: "Transactions", title: "Transactions", bgColor: "C02F1D", fgColor: "FFFFFF"),MVPModel(imageName: "Services", title: "Services", bgColor: "B5C689", fgColor: "FFFFFF")]
+//    ]
+    
+    var mvpData = [[MVP]]()
+    
+    var mvps = [MVP]()
 
     // BG: F2F3F4 / FG: 373D3F
     // 0C374D/EFD469
@@ -37,9 +45,12 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         // Register cell classes
         collectionView?.register(UINib(nibName: "MVPCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        
+        loadMVPs()
+        
         self.navigationController?.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -74,8 +85,8 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
         
         if let indexPath = collectionView?.indexPathsForSelectedItems?.first {
             controller.selectedMVP = mvpData[indexPath.section][indexPath.row]
-            controller.view.backgroundColor = UIColor(hexString: mvpData[indexPath.section][indexPath.row].bgColor)
-            updateNavBar(withHexCode: mvpData[indexPath.section][indexPath.row].bgColor, withTitleHexCode: mvpData[indexPath.section][indexPath.row].fgColor)
+            controller.view.backgroundColor = UIColor(hexString: mvpData[indexPath.section][indexPath.row].backgroundColor!)
+            updateNavBar(withHexCode: mvpData[indexPath.section][indexPath.row].backgroundColor!, withTitleHexCode: mvpData[indexPath.section][indexPath.row].foregroundColor!)
         }
         
         
@@ -86,7 +97,19 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        
+        //return 2
+        
+        let sectionNum: Int = mvps.count / 2
+        if sectionNum == 0 {
+            let title = UILabel(frame: CGRect(x: 0, y: 20, width: 200, height: 40))
+            title.textColor = UIColor.black
+            title.text = "No Data available!!"
+            title.textAlignment = .center
+            collectionView.addSubview(title)
+        }
+        return sectionNum
+        
     }
 
 
@@ -97,9 +120,17 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MVPCollectionViewCell
-    
+        
         //configure the cell
         cell.configure(with: mvpData[indexPath.section][indexPath.row])
+        
+        //MARK: - One time job to push data into table uncomment below for preparation of data
+//        let mvp = MVP(context: context)
+//        mvp.title = mvpData[indexPath.section][indexPath.row].title
+//        mvp.icon = mvpData[indexPath.section][indexPath.row].imageName
+//        mvp.foregroundColor = mvpData[indexPath.section][indexPath.row].fgColor
+//        mvp.backgroundColor = mvpData[indexPath.section][indexPath.row].bgColor
+//        saveMVPs()
         
         return cell
     }
@@ -140,6 +171,31 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
         return transition
     }
     
+    //MARK: - core data methods to save and retrieve data
+    func saveMVPs() {
+        do {
+            try context.save()
+        } catch {
+            print ("Error saving data,\(error)")
+        }
+    }
+    
+    func loadMVPs() {
+        let request: NSFetchRequest<MVP> = MVP.fetchRequest()
+        do {
+            mvps = try context.fetch(request)
+            var dataCtr = -1
+            for ctr in 1...mvps.count {
+                if ctr % 2 != 0 {
+                    mvpData.append([])
+                    dataCtr = dataCtr + 1
+                }
+                mvpData[dataCtr].append(mvps[ctr-1])
+            }
+        } catch {
+            print ("Error saving data,\(error)")
+        }
+    }
     // MARK: UICollectionViewDelegate
 
     /*

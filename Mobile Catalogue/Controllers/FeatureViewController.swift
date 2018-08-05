@@ -7,69 +7,75 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "featureCell"
 
 class FeatureTableViewController: AccordionTableViewController {
     
     var alreadyExpandedCell: AccordionTableViewCell?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-    let securityData = [
-        FeatureModel(title: "User Id/Password Login", tech: "Native", content: ""),
-        FeatureModel(title: "Biometrics Login", tech: "Native", content: ""),
-        FeatureModel(title: "Card Activation", tech: "Native", content: ""),
-        FeatureModel(title: "Retrieve User Id", tech: "Native", content: ""),
-        FeatureModel(title: "Password Reset", tech: "Native", content: ""),
-        FeatureModel(title: "Enhanced Face Id", tech: "Angular", content: ""),
-        FeatureModel(title: "Enhanced Biometric", tech: "Angular", content: ""),
-        FeatureModel(title: "OTP - SoftToken", tech: "Native", content: ""),
-        FeatureModel(title: "Push Notification", tech: "Angular", content: ""),
-        FeatureModel(title: "User Id/Password Login", tech: "Native", content: "")
-        ]
+//    let securityData = [
+//        FeatureModel(title: "User Id/Password Login", tech: "Native", content: ""),
+//        FeatureModel(title: "Biometrics Login", tech: "Native", content: ""),
+//        FeatureModel(title: "Card Activation", tech: "Native", content: ""),
+//        FeatureModel(title: "Retrieve User Id", tech: "Native", content: ""),
+//        FeatureModel(title: "Password Reset", tech: "Native", content: ""),
+//        FeatureModel(title: "Enhanced Face Id", tech: "Angular", content: ""),
+//        FeatureModel(title: "Enhanced Biometric", tech: "Angular", content: ""),
+//        FeatureModel(title: "OTP - SoftToken", tech: "Native", content: ""),
+//        FeatureModel(title: "Push Notification", tech: "Angular", content: ""),
+//        FeatureModel(title: "User Id/Password Login", tech: "Native", content: "")
+//        ]
+//
+//    let informationData = [
+//        FeatureModel(title: "Accounts Dashboard", tech: "Native", content: ""),
+//        FeatureModel(title: "Account Details", tech: "Native", content: ""),
+//        FeatureModel(title: "Account Activities", tech: "Native", content: ""),
+//        FeatureModel(title: "Credit Card Details", tech: "Angular", content: ""),
+//        FeatureModel(title: "Credit Card Transactions", tech: "Angular", content: ""),
+//        FeatureModel(title: "Loan On Phone", tech: "Angular", content: ""),
+//        FeatureModel(title: "Rewards Summary", tech: "Angular", content: ""),
+//        FeatureModel(title: "Loan Account Summary", tech: "Native", content: ""),
+//        FeatureModel(title: "Time Deposit Summary", tech: "Angular", content: "")
+//    ]
+//
+//    let txnData = [
+//        FeatureModel(title: "Pay to Cards (Self and Other Bank Owned)", tech: "Native", content: ""),
+//        FeatureModel(title: "Bill Payment", tech: "Native", content: ""),
+//        FeatureModel(title: "Repay Loans", tech: "Native", content: ""),
+//        FeatureModel(title: "Transfer Between Own Accounts", tech: "Native", content: ""),
+//        FeatureModel(title: "Domestic Transfers - Citi Accounts", tech: "Native", content: ""),
+//        FeatureModel(title: "Domestic Transfers - Outside Citi", tech: "Native", content: ""),
+//        FeatureModel(title: "International Transfers", tech: "Native", content: "")
+//        ]
+//
+//    let svcData = [
+//        FeatureModel(title: "Card Activation", tech: "Angular", content: ""),
+//        FeatureModel(title: "Notification Enrollment", tech: "Hybrid", content: ""),
+//        FeatureModel(title: "XXXXXXXXXXX", tech: "Hybrid", content: "")
+//    ]
     
-    let informationData = [
-        FeatureModel(title: "Accounts Dashboard", tech: "Native", content: ""),
-        FeatureModel(title: "Account Details", tech: "Native", content: ""),
-        FeatureModel(title: "Account Activities", tech: "Native", content: ""),
-        FeatureModel(title: "Credit Card Details", tech: "Angular", content: ""),
-        FeatureModel(title: "Credit Card Transactions", tech: "Angular", content: ""),
-        FeatureModel(title: "Loan On Phone", tech: "Angular", content: ""),
-        FeatureModel(title: "Rewards Summary", tech: "Angular", content: ""),
-        FeatureModel(title: "Loan Account Summary", tech: "Native", content: ""),
-        FeatureModel(title: "Time Deposit Summary", tech: "Angular", content: "")
-    ]
+//    var features = [FeatureModel]()
     
-    let txnData = [
-        FeatureModel(title: "Pay to Cards (Self and Other Bank Owned)", tech: "Native", content: ""),
-        FeatureModel(title: "Bill Payment", tech: "Native", content: ""),
-        FeatureModel(title: "Repay Loans", tech: "Native", content: ""),
-        FeatureModel(title: "Transfer Between Own Accounts", tech: "Native", content: ""),
-        FeatureModel(title: "Domestic Transfers - Citi Accounts", tech: "Native", content: ""),
-        FeatureModel(title: "Domestic Transfers - Outside Citi", tech: "Native", content: ""),
-        FeatureModel(title: "International Transfers", tech: "Native", content: "")
-        ]
+    var features = [Feature]()
     
-    let svcData = [
-        FeatureModel(title: "Card Activation", tech: "Angular", content: ""),
-        FeatureModel(title: "Notification Enrollment", tech: "Hybrid", content: ""),
-        FeatureModel(title: "XXXXXXXXXXX", tech: "Hybrid", content: "")
-    ]
-    
-    var featureData: [FeatureModel] = [
-        FeatureModel(title: "Pay to Cards (Self and Other Bank Owned)", tech: "Native", content: "")]
-    
-    var selectedMVP: MVPModel? {
+    var selectedMVP: MVP? {
         didSet {
-            if selectedMVP!.title == "Services" {
-                featureData = svcData
-            } else if selectedMVP!.title == "Transactions" {
-                featureData = txnData
-            } else if selectedMVP!.title == "Information" {
-                featureData = informationData
-            } else {
-                featureData = securityData
-            }
-            //loadItems()
+            //1. For Hardcoded data in file
+//            if selectedMVP!.title == "Services" {
+//                features = svcData
+//            } else if selectedMVP!.title == "Transactions" {
+//                features = txnData
+//            } else if selectedMVP!.title == "Information" {
+//                features = informationData
+//            } else {
+//                features = securityData
+//            }
+            // 2. Data from CoreData
+            loadFeatures()
         }
     }
     
@@ -95,7 +101,7 @@ class FeatureTableViewController: AccordionTableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return featureData.count
+        return features.count
     }
 
     
@@ -104,23 +110,26 @@ class FeatureTableViewController: AccordionTableViewController {
 
         
          //Configure the cell...
-        cell.headerView.backgroundColor = UIColor(hexString: selectedMVP!.bgColor)
-        cell.txtTitle.textColor = UIColor(hexString: selectedMVP!.fgColor)
-        cell.txtTechnology.textColor = UIColor(hexString: selectedMVP!.fgColor)
-        cell.detailView.backgroundColor = UIColor(hexString: selectedMVP!.fgColor)
-        cell.detailText.textColor = UIColor(hexString: selectedMVP!.bgColor)
+        cell.headerView.backgroundColor = UIColor(hexString: selectedMVP!.backgroundColor!)
+        cell.txtTitle.textColor = UIColor(hexString: selectedMVP!.foregroundColor!)
+        cell.txtTechnology.textColor = UIColor(hexString: selectedMVP!.foregroundColor!)
+        cell.detailView.backgroundColor = UIColor(hexString: selectedMVP!.foregroundColor!)
+        cell.detailText.textColor = UIColor(hexString: selectedMVP!.backgroundColor!)
         
-        let feature = featureData[indexPath.row]
+        let feature = features[indexPath.row]
         
-        cell.txtTitle.text = feature.title
-        cell.txtTechnology.text = feature.tech
-        cell.detailText.text = "This section will list all details about " + feature.title
+        cell.txtTitle.text = feature.name
+        cell.txtTechnology.text = feature.platform
+        cell.detailText.text = feature.detail
         
-//        cell.textLabel?.text = featureData[indexPath.row]
-//
-//        //this is for color
-//        cell.textLabel?.textColor = UIColor(hexString: selectedMVP!.fgColor)
-//        cell.backgroundColor = UIColor(hexString: selectedMVP!.bgColor)
+        //MARK: - HARDCODED FEATURES ONE TIME DATA PUSH - UNCOMMENT BELOW and Run once for all available MVPs
+//        let newFeature = Feature(context: context)
+//        newFeature.name = feature.title
+//        newFeature.platform = feature.tech
+//        newFeature.detail = "This section will list all details about " + feature.title
+//        newFeature.parentMVP = selectedMVP
+//        saveFeatures()
+        
         return cell
     }
     
@@ -129,5 +138,31 @@ class FeatureTableViewController: AccordionTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return expandedIndexPaths.contains(indexPath) ? 150.0 : 50.0
     }
-
+    
+    //MARK: - CoreData Load and Save features
+    func saveFeatures() {
+        do {
+            try context.save()
+        } catch {
+            print ("Error saving features,\(error)")
+        }
+    }
+    
+    func loadFeatures() {
+        
+        let predicate =  NSPredicate(format: "parentMVP.title MATCHES %@", selectedMVP!.title!)
+        
+        let request: NSFetchRequest<Feature> = Feature.fetchRequest()
+        request.predicate = predicate
+        
+        //Adding Predicate
+        
+        
+        do {
+            features = try context.fetch(request)
+        } catch {
+            print ("Error saving data,\(error)")
+        }
+    }
+    
 }

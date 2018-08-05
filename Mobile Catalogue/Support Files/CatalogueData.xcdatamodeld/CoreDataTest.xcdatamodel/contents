@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="Feature" representedClassName="Feature" syncable="YES" codeGenerationType="class">
+        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="platform" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="parentMVP" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MVP" inverseName="features" inverseEntity="MVP" syncable="YES"/>
+    </entity>
+    <entity name="MVP" representedClassName=".MVP" syncable="YES" codeGenerationType="class">
+        <attribute name="backgroundColor" attributeType="String" syncable="YES"/>
+        <attribute name="foregroundColor" attributeType="String" syncable="YES"/>
+        <attribute name="icon" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="features" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Feature" inverseName="parentMVP" inverseEntity="Feature" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Feature" positionX="-54" positionY="18" width="128" height="103"/>
+        <element name="MVP" positionX="-263" positionY="18" width="128" height="118"/>
+    </elements>
 </model>
