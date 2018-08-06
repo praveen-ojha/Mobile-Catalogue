@@ -55,7 +55,7 @@ class FeatureTableViewController: AccordionTableViewController {
 //    let svcData = [
 //        FeatureModel(title: "Card Activation", tech: "Angular", content: ""),
 //        FeatureModel(title: "Notification Enrollment", tech: "Hybrid", content: ""),
-//        FeatureModel(title: "XXXXXXXXXXX", tech: "Hybrid", content: "")
+//        FeatureModel(title: "Card Linking", tech: "Hybrid", content: "")
 //    ]
     
 //    var features = [FeatureModel]()

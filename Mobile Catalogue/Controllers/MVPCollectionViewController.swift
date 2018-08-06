@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 import CoreData
+import FirebaseDatabase
+import SVProgressHUD
 
 private let reuseIdentifier = "mvpCustomCell"
 
@@ -53,6 +55,12 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
         
         self.navigationController?.delegate = self
         // Do any additional setup after loading the view.
+        
+        //MARK: Added swipe down gesture
+        let down = UISwipeGestureRecognizer(target : self, action : #selector(self.downSwipe))
+        down.direction = .down
+        down.numberOfTouchesRequired = 3
+        collectionView?.addGestureRecognizer(down)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,12 +114,59 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
             title.textColor = UIColor.black
             title.text = "No Data available!!"
             title.textAlignment = .center
+            
+//            let button = UIButton(type: .roundedRect) // let preferred over var here
+//            button.frame = CGRect(x: 100, y: 100, width: 100, height: 50)
+//            button.backgroundColor = UIColor.lightGray
+//            //button.setTitleColor(UIColor.blue, for: .normal)
+//            button.setTitle("Synch", for: .normal)
+//            button.tintColor = UIColor.black
+//
+//            button.addTarget(self, action: #selector(buttonTapAction(_:)), for: .touchUpInside)
+//            self.view.addSubview(button)
             collectionView.addSubview(title)
         }
         return sectionNum
         
     }
-
+    
+    @objc func buttonTapAction(_ sender:UIButton!)
+    {
+        //print("Button is working")
+    }
+    
+    @objc func downSwipe(){
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Are you sure!", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Code", style: .default){ (action) in
+            SVProgressHUD.show(withStatus: "checking...")
+            let code = textField.text!
+            if code != "neurocysticercosis" {
+                //Wrong alert
+                let failAlert = UIAlertController(title: "Hard luck!", message: "", preferredStyle: .alert)
+                let failAlertAction = UIAlertAction(title: ":(", style: .default){ (action) in
+                    //do nothing
+                }
+                    failAlert.addAction(failAlertAction)
+                self.present(failAlert, animated: true, completion: nil)
+                SVProgressHUD.dismiss()
+            } else {
+                //Data Synch process
+                self.dataSynch()
+            }
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "code"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -184,6 +239,9 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
         let request: NSFetchRequest<MVP> = MVP.fetchRequest()
         do {
             mvps = try context.fetch(request)
+            if mvps.count == 0 {
+                return
+            }
             var dataCtr = -1
             for ctr in 1...mvps.count {
                 if ctr % 2 != 0 {
@@ -193,7 +251,7 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
                 mvpData[dataCtr].append(mvps[ctr-1])
             }
         } catch {
-            print ("Error saving data,\(error)")
+            print ("Error retrieving MVPs,\(error)")
         }
     }
     // MARK: UICollectionViewDelegate
@@ -226,5 +284,42 @@ class MVPCollectionViewController: UICollectionViewController, UIViewControllerT
     
     }
     */
+    
+    //MARK: - Pushing data from cloud
+    func dataSynch() {
+        
+        //cleaning DB first
+        for ctr in 0..<mvps.count {
+            let mvp = mvps[ctr]
+            //TODO: first get the features deleted
+            //By right if the MVP is deleted then child should also get deleted - check this
+            context.delete(mvp)
+        }
+        
+        let mvpDB = Database.database().reference().child("MVP")
+        mvpDB.observe(.childAdded) { (snapshot) in
+            let snapShotValue = snapshot.value as! Dictionary<String,String>
+            let mvp : MVP = MVP(context: self.context)
+            mvp.title = snapShotValue["title"]!
+            mvp.icon = snapShotValue["icon"]!
+            mvp.foregroundColor = snapShotValue["foregroundColor"]!
+            mvp.backgroundColor = snapShotValue["backgroundColor"]
+            
+            //SOMEWHERE HERE TO FETCH THE FEATURES
+            let featureDB = Database.database().reference().child(mvp.title!)
+            featureDB.observe(.childAdded){ (featureSnapshot) in
+                let featureSSValue = featureSnapshot.value as! Dictionary<String,String>
+                let feature : Feature = Feature(context: self.context)
+                feature.name = featureSSValue["name"]
+                feature.platform = featureSSValue["platform"]
+                feature.detail = featureSSValue["detail"]
+                feature.parentMVP = mvp
+                self.saveMVPs()
+            }
+            
+            self.saveMVPs()
+        }
+        SVProgressHUD.dismiss(withDelay: 5)
+    }
 
 }
